@@ -27,11 +27,20 @@
               result["domain"]=domain_name;
               result["url"]=service_url;
               if (error || response.statusCode !== 200) {
+                  console.log(error.errno);
                   result["data"]="";
-                  result["error"]="Not able to pull the data from "+domain_name+" server";
+                  if(error.errno=="ECONNREFUSED"){
+                    result["error"]="Error: Connection refused by server : "+domain_name;
+                  } else if(error.errno=="ENOTFOUND"){
+                    result["error"]="Error: getaddrinfo ENOTFOUND  "+domain_name+" server";
+                  } else {
+                      result["error"]="Error: Not able to pull the data from "+domain_name+" server";
+                  }
+
                   allsandboxstatusResponse.failure_sandboxs.push(result);
               }
               else {
+
                 var data = JSON.parse(response.body);
                 result["data"]=data
                 result["error"]="";
