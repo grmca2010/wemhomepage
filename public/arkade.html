@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <!--<base href="/">-->
+  <base href=".">
+  <title>Sandbox Quick Start Guide</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+ <!-- Fixed navbar -->
+
+
+<div class="container">
+
+  <!-- Main component for a primary marketing message or call to action -->
+
+  <div class="row">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#grapevine">Self Service Branch Creation</a></li>
+      <li><a data-toggle="tab" href="#hookomator">Self service locking/unlocking</a></li>
+      <li><a data-toggle="tab" href="#merge_report">Merge Report</a></li>
+    </ul>
+    <div class="tab-content well">
+
+      <div id="grapevine" class="tab-pane fade in active"></div>
+      <div id="hookomator" class="tab-pane fade">
+        <h3>Oh, hey actually branch locking and unlocking might not be self serivce yet!</h3>
+        Please contact the dev ops team at cdc-dev-ops@cisco.com<br/><br/><br/><br/><br/>
+
+      </div>
+      <div id="merge_report" class="tab-pane fade"></div>
+
+    </div>
+
+
+  </div>
+  <div class="footer">
+    <p>&copy; All Rights Reserved, Cisco Systems 2014</p>
+  </div>
+</div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/Markdown.Converter.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function jQueryReady($) {
+        var converter = new Markdown.Converter(),
+        /* Alias the conversion method to make it easier to swap libraries in the future. */
+        markdownToHtml = converter.makeHtml;
+
+        $.get("docs/documentation/arkade/grapevine.md").success(function (data) {
+          $("#grapevine").append(markdownToHtml(data));
+        });
+
+        $.get("docs/documentation/arkade/hookomator.md").success(function (data) {
+          $("#hookomator").append(markdownToHtml(data));
+        });
+
+        $.get("docs/documentation/arkade/merge_report.md").success(function (data) {
+          $("#merge_report").append(markdownToHtml(data));
+        });
+
+        $.get("navbar.html").success(function (data) {
+          $("body").prepend(data);
+        });
+      });
+    </script>
+
+  </body>
+  </html>

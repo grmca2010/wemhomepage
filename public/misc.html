@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <!--<base href="/">-->
+  <base href=".">
+  <title>Sandbox Quick Start Guide</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+ <!-- Fixed navbar -->
+
+<div class="container">
+
+  <!-- Main component for a primary marketing message or call to action -->
+
+
+  <div class="row marketing">
+
+  <div class="container">
+    <h4>Miscellaneous</h4>
+    <p>
+      <a href="http://wikibot:9001/p/Jenkins_KT">Overview</a> - Here is a brief syllabus/overview of the Dev-Ops Knowledge Transfer sessions.<br>
+      <a href="https://cisco.webex.com/ciscosales/lsr.php?RCID=02bd729614714d3aaf96b248dd03ff33">KT Session 1</a> - This is a WebEx recording of the first Dev-Ops Knowledge Transfer session. It covers Git and Gitflow.<br>
+      <a href="https://cisco.webex.com/ciscosales/lsr.php?RCID=719ac0347d774cc8b6fdc3f27384ab45">KT Session 2</a> - This is a WebEx recording of the second Dev-Ops Knowledge Transfer session. It is an introduction to Adobe CQ/AEM.<br>
+      <a href="https://cisco.webex.com/ciscosales/lsr.php?RCID=31700fa9ff1e4f31a1cd8a646d090c42">KT Session 3</a> - This is a WebEx recording of the third Dev-Ops Knowledge Transfer session. It covers Maven.<br>
+      <a href="https://cisco.webex.com/ciscosales/lsr.php?RCID=f999a16821f741ab96c1d87ead744e4c">KT Session 4</a> - This is a WebEx recording of the fourth Dev-Ops Knowledge Transfer session. This session covers Jenkins.<br>
+      <a href="https://cisco.webex.com/ciscosales/lsr.php?RCID=a7315b53984e4332a5ba03177065acd6">KT Session 5</a> - This is a WebEx recording of the fifth Dev-Ops Knowledge Transfer session.<br>
+      <a href="https://cisco.webex.com/ciscosales/lsr.php?RCID=ccf26fcf13df4371b430f20b906fa857">KT Session 6</a> - This is a WebEx recording of the sixth Dev-Ops Knowledge Transfer session.<br>
+      <a href="https://cisco.webex.com/ciscosales/lsr.php?RCID=fafb461fd3464ed1b4d32d3e2af4a859">KT Session 7</a> - This is a WebEx recording of the seventh Dev-Ops Knowledge Transfer session.<br>
+    </p>
+  </div>
+
+
+</div>
+<div class="footer">
+  <p>&copy; All Rights Reserved, Cisco Systems 2014</p>
+</div>
+</div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $.get("navbar.html").success(function (data) {
+          $("body").prepend(data);
+        });
+    </script>
+  </body>
+  </html>

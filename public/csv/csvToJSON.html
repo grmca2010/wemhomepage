@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSV to JSON Converter</title>
+    <style>
+        #validation {
+            color: red;
+            font-weight: bold;
+            display: none;
+        }
+		#txtFileUpload{
+		 margin:10px;
+		}
+		textarea {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+    </style>
+</head>
+<body>
+    <div class="fileUploadSection">
+        <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" />
+    </div>
+	<div id="waitText">
+	 
+	</div>
+    <div>
+        <input type="hidden" id="storeJSON" />
+        <div id="reprocessData" style="display:none;"></div>
+    </div>
+    <textarea autocomplete="off" spellcheck="false" class="processedJSON" rows="150" cols="200" id="processedJSON" wrap="on"></textarea>
+
+    <script src="assets/js/jquery.js"></script>	
+    <script src="assets/js/csvToJSON.js"></script>
+</body>
+
+</html>

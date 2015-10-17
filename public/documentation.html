@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <!--<base href="/">-->
+  <base href=".">
+  <title>Sandbox Quick Start Guide</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+ <!-- Fixed navbar -->
+
+<div class="container">
+
+  <!-- Main component for a primary marketing message or call to action -->
+
+
+  <div class="row marketing">
+
+  <div class="container">
+    <h4>Documentation</h4>
+    <p>Please use the links in the navigation bar to view the documentation for this sandbox.</p>
+  </div>
+
+
+</div>
+<div class="footer">
+  <p>&copy; All Rights Reserved, Cisco Systems 2014</p>
+</div>
+</div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+        <script>
+        $.get("navbar.html").success(function (data) {
+          $("body").prepend(data);
+        });
+    </script>
+  </body>
+  </html>

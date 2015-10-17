@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <!--<base href="/">-->
+  <base href=".">
+  <title>New Hire CheckList</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style type="text/css" media="screen">
+      a.bookmarklet {
+        background: #76cc1e;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+      }
+      ul.testing-bookmark li {padding-bottom:10px}
+    h5 { text-decoration:underline;font-weight:bold;padding-bottom:10px;}
+    h5 span { text-decoration:none;font-weight:normal;padding-bottom:10px;}
+    </style>
+  
+
+
+</head>
+<body>
+
+  <!-- the navbar gets inserted here by jquery -->
+
+  <div class="container">
+
+  <!-- Main component for a primary marketing message or call to action -->
+
+  <div class="row">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#gettingStarted">Getting Started</a></li>
+      <li class=""><a data-toggle="tab" href="#Accounts">Accounts</a></li>
+	  <li class=""><a data-toggle="tab" href="#stuff">Other Stuff</a></li>
+    </ul>
+    <div class="tab-content well">
+
+      <div id="gettingStarted" class="tab-pane fade active in">
+        
+      </div>
+
+		 <div id="Accounts"  class="tab-pane fade">
+
+	 </div>
+	  <div id="stuff"  class="tab-pane fade">
+
+	 </div>
+
+	</div>
+
+    </div>
+
+
+  </div>
+  <div class="footer">
+    <p>&copy; All Rights Reserved, Cisco Systems 2014</p>
+  </div>
+ <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/Markdown.Converter.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+    jQuery(document).ready(function jQueryReady($) {      
+  //dynamically load template of accounts , getting started section of new hire checklist.
+
+      $.get("navbar.html").success(function (data) {
+        $("body").prepend(data);
+      });
+	   $.get("gettingStarted.html").success(function (data) {
+           $("#gettingStarted").html(data);
+           $(".package-details").css("width","100%");
+           $("nav h4").css("width","100%");
+    });
+	$.get("Accounts.html").success(function (data) {
+           $("#Accounts").html(data);
+           $(".package-details").css("width","100%");
+           $("nav h4").css("width","100%");
+    });
+	$.get("stuff.html").success(function (data) {
+           $("#stuff").html(data);
+           $(".package-details").css("width","100%");
+           $("nav h4").css("width","100%");
+    });
+	
+	
+	});
+    </script>
+
+  </body>
+  </html>

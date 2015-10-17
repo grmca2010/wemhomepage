@@ -1,0 +1,740 @@
+<html>
+   <head>
+      <title>Research content packages </title>
+      <script src="http://www.cisco.com/web/fw/lib/jquery-1.4.2.js"></script>
+      <style>
+         body {
+         font-family: arial, helvetica, sans-serif;
+         }
+         #accounts {
+         margin: 20px 0px 0px 15px;
+         }
+         #accounts h2 {
+         font-size: 14px;
+         font-weight: bold;
+         color: #2970a6;
+         text-decoration: underline;
+         padding-left: 20px;
+         }
+         #accounts ul li {
+         color: #525252;
+         font-family: arial, helvetica, clean, sans-serif;
+         font-size: 12px;
+         list-style-type: circle;
+         }
+         #accounts h3 {
+         color: #444;
+         font-size: 14px;
+         font-weight: bold;
+         padding-left: 20px;
+         }
+         #accounts h4 {
+         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         line-height: 1.5;
+         color: #fff;
+         background-color: #2970a6;
+         cursor: pointer;
+         width: 1200px;
+         padding: 8px 8px 8px 22px;
+         margin: 0px;
+         border: 1px solid transparent;
+         border-color: #ddd;
+         border-bottom: none;
+         }
+         .package-details {
+         display: none;
+         padding: 15px;
+         border: 1px solid #ddd;
+         border-top: 0px;
+         width: 1200px;
+         }
+         .spacer {
+         border-bottom: 1px solid #ccc;
+         display: block;
+         }
+         .border {
+         border: 1px solid #ddd;
+         border-radius: 5px;
+         }
+         #domain{
+         width: 500px;
+         height: 30px;
+         border-radius: 3px;
+         border: 1px solid #CCC;
+         box-shadow: 1px 1px 5px #CCC;
+         }
+         #button{
+         height: 30px;
+         width : 316px;
+         background-color: #CCC;
+         margin: 3px;
+         }	
+         #alert{
+         display:none;
+         color:#8F8FA6;
+         font-family: arial, helvetica, clean, sans-serif;
+         font-size: 12px;
+         }
+      </style>
+      <script>
+         $(document).ready(function() {
+         	$("#accounts h4").click(function() {
+         		if ($(this).next("div").is(":visible")) {
+         			$(this).next("div").slideUp('200');
+         		} else {
+         			$(this).next("div").slideToggle();
+         		}
+         	});
+         	$("#button").click(function(){
+         		var domain=$("#domain").val();
+         			$("body li:contains('.html')").each(function(){
+         					if($("#domain").val() == "" )
+         					{
+         						
+         						$("#alert").css({'display':"block"});
+         						$("#domain").focus();
+         					}								
+         					
+         					else{
+         					$(this).prepend(domain);
+         					$(this).wrapInner('<a href="' + $(this).text() + '" />');
+         					$("#button").attr('disabled','disabled');
+         					$("#domain").attr('disabled','disabled');
+         					$("#alert").css({'display':"none"});
+         					}
+         				});
+         	});
+         
+         });
+         
+      </script>
+   </head>
+   <body>
+      <div id="accounts">
+      <nav>
+         <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------Cisco network accounts------------------------------------------->
+         <h4>Cisco network accounts</h4>
+         <div class="package-details">
+            <div class="border">
+               <h2><u>NT Account (AD Account)</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> Ability to log on to the Active Directory service and all NT machines.</li>
+                  <li> <strong>Prerequisite:</strong> N/A</li>
+                  <li> <strong>Access:</strong></li>
+                  <li> <strong>Instructions:</strong> Your manager should have requested an NT account for you and received an "AD new hire account info" email with your username and password.  Use this to log onto an NT box.  You should then be prompted to change your password.  If not, change your password under Control Panel &gt; Users and Passwords.</li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>Email Account</u></h2>
+               <p>
+                  <strong>Note:</strong> Our team relies heavily on Microsoft Outlook's Calendaring features in conjunction with Cisco's own Webex] application. To properly enable these feature, it is important that your email account is set up on the actual Exchange server (as opposed to a Scalix account). Contractors may need to specifically request an Exchange account.
+               </p>
+               <p> </p>
+               <ul>
+                  <li> <strong>About:</strong> Getting email.</li>
+                  <li> <strong>Prerequisite:</strong> NT account.</li>
+                  <li> <strong>Access:</strong> see instructions for access to different systems involved in this process</li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> Your manager should have also requested an email account for you.  To check if you have an email account, you can go to <a href="http://eman-exchange.cisco.com/e2k/exchange_status.html" target="_top">Exchange Migration Status</a>. If your User Dashboard does not appear, choose User &gt; Search and enter your username.  If this reports that you don't have an email account, contact your manager for assistance. If it reports that you have an email account but no Exchange account, you will have to continue and complete step 4. If you already have an exchange server set up, skip step 4 below.</li>
+                        <li> If you do have an account, go to <a href="http://pwreset.cisco.com" target="_top">http://pwreset.cisco.com</a> and enter your NT username and password.  Choose a new email password.  Follow the password guidelines (Passwords must: be 8 characters, contain at least three of the following four types of characters: upper case characters (e.g. A-Z), lower case characters (e.g. a-z), digits (e.g. 0-9), "special" characters (e.g. !$%^&amp;*()_+|~-=\`{}[]:";'&lt;&gt;?,./), must not be a word, and must not be based on personal info.)</li>
+                        <li> After successfully resetting your email password, you will receive a message saying "Your password has successfully been reset on _machine_".  "_Machine_" is the name of your mail server.</li>
+                        <li> ----  <strong>possibly outdated information. please contact your manager if you do not have an Exchange account</strong>  ----        Go to <a href="http://wwwin.cisco.com/it/services/messaging/exch-availability.shtml#Exchange_Account_Provisioning" target="_top">Exchange Messaging Availability</a> where you can read about Exchange Account Provisioning, and follow a link to <a href="http://eman.cisco.com/SERVICE/OnRamp/" target="_top">OnRamp</a> if applicable, where you can make a request for an Exchange account (choose "Request/View Accounts"). This appears to apply only to contractors. Regular employees should be set up with an Exchange account by default. If you do need to request an Exchange account, you'll need to both request the account and verify your access to the mail server using an oddly formatted URL at the bottom of the page (AD Test Page). When clicking on the link titled "AD Test Page", be sure to enter your domain along with your user ID, for example: CISCO\yourid. (You can also use your email address "user@cisco.com", rather than the domain prefix/username combination). You need to both make the request, AND test the connectivity using the AD Test Page for the request to go through, but you can do this in any order you wish. After both steps have been completed, it may take up to 12 hours before your Exchange account is created. When the Exchange mailbox becomes active, mail sent by users with Cisco Exchange-based mail will INSTANTLY stop routing to your previous webmail box, so be aware of this. In order to see the mail from these users, use Exchange-based webmail: <a href="https://email.cisco.com/exchange/" target="_top">https://email.cisco.com/exchange/</a> . Mail from other users, such as external accounts will continue to come to your original webmail address, so you'll also need to check that as well (see below for configuring web-only webmail). In addition, you'll need to keep checking the Exchange-based Outlook account (set up automatically on a default-imaged machine) to see if it is active. Use the <em>check name</em> button in the account properties of your Exchange Outlook profile to verify the account. When you no longer get an error after checking your name, the account is ready to be accessed using Outlook. A mail will be sent from support when the Exchange mailbox is activated, but according to the support person I talked to, you may not see this confirmation mail in your webmail box...it might be routed to the new Exchange mailbox.  (I saw mine...it came to the original webmail box about 2 minutes before the Exchange account became active.) Fun? YES! Confusing? YES! As a final indignity, all of your downloaded mail in your original webmail account will not be available in the new Exchange account. If you have set up an Outlook profile to check your original webmail, it will be contained in a .pst file. Import this .pst file into your new Exchange Outlook profile. <code>"File&gt;Import File&gt;.pst File"</code> your old mail file should be at: <code>"C:\Documents and Settings\user\Local Settings\Application Data\Microsoft\Outlook\Outlook.pst"</code></li>
+                        <li>
+                           While you are waiting for your Exchange account to become active, you can setup your webmail client. Just be aware that this is a temporary endeavor. In Outlook, Eudora, or your preferred mail client, enter the following information: 
+                           <ol>
+                              <li> Your Name (self explanatory)</li>
+                              <li> Email address: <a href="mailto:username@cisco.com">username@cisco.com</a> or <a href="mailto:firstname.lastname@cisco.com">firstname.lastname@cisco.com</a></li>
+                              <li> Username: your NT/email username</li>
+                              <li> Password (you just set this)         </li>
+                              <li> Incoming mail server (probably a POP server): <em>machine</em>.cisco.com, where <em>machine</em> is the name from the password reset success message.</li>
+                              <li> Outgoing mail server (SMTP): mailman.cisco.com.</li>
+                              <li> When your Exchange account is ready, you might need to add the Exchange account in Outlook on your laptop. For newly imaged machines (as of 11/09), it appears that an Exchange account is setup correctly with your username by default. </li>
+                           </ol>
+                        </li>
+                     </ol>
+                  </li>
+               </ul>
+               <p></p>
+               <span class="spacer"></span>
+               <h2><u>Account Synchronization & Web Account (CEC Account)</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> The Cisco Internal Web Account is a UNIX account.  Your username and password will be the same as those used for your mail server (see above).  It is also used to establish a new EDCS (Eng Web and CEC servers) accounts, provide access to a few EDCS/WWW department groups, and to provide access to two Web publishing areas. To access the CEC site you will need to synchronize your password.</li>
+                  <li> <strong>Prerequisite:</strong> NT Account, Email Account</li>
+                  <li> <strong>Access:</strong> <a href="https://pwreset.cisco.com/sync" target="_top">Password Synchronization Tool</a></li>
+                  <li> <strong>Instructions:</strong> Type your user id and password in the boxes and submit.  This will sync up the web access password with the newly set email</li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>Remedy Account</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> Remedy is the new main issue tracking system in use for all Cisco internal issues. The ID team receives issues from content developers and other web authors through this system.</li>
+                  <li> <strong>Prerequisite:</strong> NT account, CEC Account</li>
+                  <li> <strong>Instructions:</strong> Add a new user to Remedy:</li>
+               </ul>
+               <p>
+                  ----  <strong>outdated and possibly unecessary. Remedy account may be set up when you synchronize your password in the step above</strong>  ------- 
+               </p>
+               <ol>
+                  <li> You will use the Remedy system to request an enhanced Remedy account with additional permissions. (I know! The Universe will implode or something!)</li>
+                  <li> Go to the following URL, within the Remedy System: <a href="http://alli-prd.cisco.com/arsys/forms/alli-prd-rcdn/SRS%3AServiceRequestConsole/enduser/?&amp;mode=submit&amp;cacheid=316e280a" target="_top">http://alli-prd.cisco.com/arsys/forms/alli-prd-rcdn/SRS%3AServiceRequestConsole/enduser/?&amp;mode=submit&amp;cacheid=316e280a</a></li>
+                  <li> At the top of this screen, under â€œService Request Managementâ€�, search â€œAllâ€� for â€œRemedyâ€�</li>
+                  <li> You will see some search article results. Ignore them.</li>
+                  <li> Eventually, the "Services" area will update with links to specific service requests for things dealing with Remedy.</li>
+                  <li> Click on: Remedy Support Tools - New User Access Request</li>
+                  <li> Provide your Cisco ID. </li>
+                  <li> Provide the ID of someone who has the same access that you desire. â€œmthotengâ€� = Mukesh, who has ticket assignment ability and is on the L2-Templates Remedy Notification Mailer.</li>
+               </ol>
+               <span class="spacer"></span>
+               <h2><u>Email Mailing Lists</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> There are several relevant mailing lists that Interface Developers should be subscribed to.</li>
+                  <li> <strong>Prerequisite</strong> Email account, NT account</li>
+                  <li> <strong>Access:</strong> <a href="http://mailer.cisco.com" target="_top">Mailer</a> (<a href="http://mailer.cisco.com" target="_top">http://mailer.cisco.com</a>) or via <a href="http://wwwin.cisco.com" target="_top">Cisco Employee Connection</a> (CEC) under <code>"My Links / Software Mailing Lists /"</code>.</li>
+                  <li>
+                     <strong>Instructions:</strong> Subscribe to the following lists: 
+                     <ul>
+                        <li> cdc-int-dev (Cisco.com Interface Development)      </li>
+                        <li> cdc-site-dev</li>
+                        <li> web-school <img src="/t4/pub/TWiki/TWikiDocGraphics/help.gif" alt="HELP" title="HELP" width="16" height="16" border="0"> (this is a very large mailer with lots of activity)</li>
+                        <li> ciscodotcom-all (Required for MDF access)       </li>
+                        <li> cdc-reporting  <img src="/t4/pub/TWiki/TWikiDocGraphics/help.gif" alt="HELP" title="HELP" width="16" height="16" border="0"> (Optional? Who decides? - CK)</li>
+                        <li> ciscodotcom-ue <img src="/t4/pub/TWiki/TWikiDocGraphics/help.gif" alt="HELP" title="HELP" width="16" height="16" border="0"> (Cisco.com User Experience) (optional)</li>
+                     </ul>
+                  </li>
+                  <li>Additional lists that may be useful are at <a href="http://wwwin.cisco.com/webdev/#9" target="_top">http://wwwin.cisco.com/webdev/#9</a></li>
+               </ul>
+               <span class="spacer"></span>
+            </div>
+         </div>
+         <!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------ID Tools Accounts------------------------------------------->
+         <h4>ID Tools Accounts</h4>
+         <div class="package-details">
+            <div class="border">
+               <h2><u>Linux</u></h2>
+               <ul>
+                  <li>
+                     <strong>Wikibot</strong> 
+                     <ul>
+                        <li> <strong>About:</strong> Access to Wikibot where Interface Developer team files are kept. Access to wikibot.cisco.com where TWiki is now hosted.</li>
+                        <li> <strong>Prerequisite:</strong> Access to computer with SSH application.</li>
+                        <li>
+                           <strong>Instructions:</strong> Get a new user account on the <a href="/t4/bin/view/Intdev/LinuxBox" class="twikiLink">LinuxBox</a> 
+                           <ol>
+                              <li> Ask bot-admin to add a username for you on wikibot. Send an email to <a href="mailto:bot-admin@cisco.com">bot-admin@cisco.com</a> asking for an account something like: (replacing [YourUserName] with your real username)               <code>"Hi, could someone with root access on Wikibot add an account on the <a href="/t4/bin/view/Intdev/LinuxBox" class="twikiLink">LinuxBox</a> for me and add a default password: $ sudo /usr/sbin/useradd [YourUserName] -g web;sudo passwd [YourUserName]"</code></li>
+                              <li> SSH in to server using Secure Shell Client <code>"Start Menu / Programs / SSH Secure Shell"</code>.</li>
+                              <li> Login as <code>"YourUserName"</code> </li>
+                              <li>
+                                 Set a secure password, type at the prompt:   
+                                 <code>
+                                    "passwd
+                                    <enter>"</enter>
+                                 </code>
+                                 follow the prompts
+                              </li>
+                           </ol>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>TWiki</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> TWiki is a flexible, yet simple web-based collaboration platform used by the Interface Development team to manage documents, projects, and a knowledge base.</li>
+                  <li> <strong>Prerequisite:</strong> Access to computer with SSH application. Access to <em>wikibot.cisco.com</em>. Working email account.</li>
+                  <li>
+                     <strong>Instructions:</strong>       
+                     <ol>
+                        <li> SSH in to server using Secure Shell Client <code>"Start Menu / Programs / SSH Secure Shell"</code>.</li>
+                        <li> You can now login via ssh example: <a href="mailto:username@wikibot.cisco.com.">username@wikibot.cisco.com.</a></li>
+                        <li> You no longer need to be root to do that since it is group writable for the web group.</li>
+                        <li> Type at command line: <code>"htpasswd /etc/httpd/passwords <em>&lt;username&gt;</em> "</code>. Where <em>&lt;username&gt;</em> is the name of the user you want to create.  It will prompt you twice for the password and write to the file. This will allow you to edit pages, but complete the next step for full TWiki functionality.</li>
+                        <li> Once email account for user has been established, fill-out the form on the following page: <a href="http://wikibot.cisco.com/t4/bin/view/TWiki/TWikiRegistration" target="_top">http://wikibot.cisco.com/t4/bin/view/TWiki/TWikiRegistration</a></li>
+                     </ol>
+                  </li>
+                  <li> <strong>More Info:</strong> <a href="/t4/bin/view/Intdev/AddATwikiUser" class="twikiLink">AddATwikiUser</a>. <a href="http://wikibot.cisco.com/t4/bin/view/Intdev/ReadOnlyViewOfTwiki" target="_top">Guest/Read-Only Access</a>. <a href="http://wikibot.cisco.com/t4/bin/view/TWiki/WebHome" target="_top">Learn more about TWiki</a></li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>CQBot</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> Access to CQ  <span class="twikiNewLink">CRXDeLite<a href="/t4/bin/edit/Intdev/CRXDeLite?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span></li>
+                  <li> <strong>Prerequisite:</strong> NT account</li>
+                  <li> <strong>Access:</strong> see instructions</li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> TBD</li>
+                     </ol>
+                  </li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>Team Contact List and Profile</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> There's a team contact list for the ID group, and profile areas on the Twiki</li>
+                  <li> <strong>Prerequisite:</strong> Ability to edit the Twiki (as defined in the previous step)</li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> Add yourself to the Contact List by editing this page: <a href="http://wikibot.cisco.com/t4/bin/view/Intdev/ContactInformation" target="_top">http://wikibot.cisco.com/t4/bin/view/Intdev/ContactInformation</a></li>
+                        <li> Add a profile by editing this page: <a href="http://wikibot.cisco.com/t4/bin/view/Intdev/IdTeam" target="_top">http://wikibot.cisco.com/t4/bin/view/Intdev/IdTeam</a></li>
+                     </ol>
+                  </li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>Bugzilla</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> The ID team maintains a Bugzilla instance for internal bug tracking purposes.</li>
+                  <li> <strong>Prerequisite</strong> Mail account</li>
+                  <li> <strong>Access:</strong> <a href="http://wikibot.cisco.com/bugzilla" target="_top">http://wikibot.cisco.com/bugzilla</a></li>
+                  <li> <strong>Instructions:</strong> Bugzilla has an automated account creation process that allows users to create their own account. Follow the instructions at this link:                                                      <a href="http://wikibot.cisco.com/bugzilla/createaccount.cgi" target="_top">http://wikibot.cisco.com/bugzilla/createaccount.cgi</a></li>
+                  <li> note that your user id is your whole email address not just your username from it</li>
+                  <li> you can use your Cisco email address, you don't need a secondary address</li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>Mingle</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> Used for agile story management by some PMs in the group. Also for team assignment status and reference in scrum meetings.</li>
+                  <li> <strong>Prerequisite</strong> NT account, CEC Account</li>
+                  <li> <strong>Access:</strong> <a href="http://cardbot.cisco.com:8080/profile/login" target="_top">http://cardbot.cisco.com:8080/profile/login</a></li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> Send an email to <a href="mailto:bot-admin@cisco.com">bot-admin@cisco.com</a> and ask for a new Mingle account</li>
+                     </ol>
+                  </li>
+               </ul>
+               <span class="spacer"></span>						
+               <h2><u>HP Quality Center</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> This is the bug tracking system most used by QA</li>
+                  <li> <strong>Prerequisite</strong> CEC Account, Quality Center access</li>
+                  <li> <strong>Access:</strong> </li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> Log in to <a href="http://alli-prd.cisco.com/arsys/shared/login.jsp?/arsys/forms/alli-prd-rcdn/SRS:ServiceRequestConsole/?&amp;mode=submit" target="_top">SRM</a></li>
+                        <li> Search on "Quality Center". Find <a href="http://alli-prd.cisco.com/arsys/shared/login.jsp?/arsys/forms/alli-prd-rcdn/SRS:ServiceRequestConsole/?&amp;mode=submit" target="_top">Quality Center - Access Request</a> in the results and click on Request Now</li>
+                        <li> Fill out the form, and provide the Domain: CISCO_11 and the Projects: ECM_WEB_TECHNOLOGIES and NGW_GLOBAL.</li>
+                        <li> After access has been granted, continue:</li>
+                        <li> Temporarily turn off Cisco security center or this will not install properly</li>
+                        <li> Download and Install <a href="https://hpln.hp.com/node/13078/attachment" target="_top">HP Quality Center Plugin 11.0</a></li>
+                        <li> Launch the Quality Center application and go to <a href="http://qualitycenter.cisco.com/qcbin/start_a.jsp" target="_top">http://qualitycenter.cisco.com/qcbin/start_a.jsp</a></li>
+                     </ol>
+                  </li>
+               </ul>
+               <p>
+                  * Your QA resource will give you access to whichever projects actually apply
+               </p>
+               <span class="spacer"></span>
+               <h2><u>Windows VMs for Testing and Browser Testing</u></h2>
+               <ul>
+                  <li> Instructions for Accessing Winbot and Testbot</li>
+               </ul>
+               <ol>
+                  <li> Request an RDC login if you don't have one already. Send an email to <a href="mailto:bot-admin@cisco.com.">bot-admin@cisco.com.</a></li>
+                  <li> Once you have your RDC login, use RDC software to connect to the following machines.   Winbot - 64.102.208.35   Testbot - 64.102.208.61   Your username will be your Cisco ID.</li>
+               </ol>
+               <ul>
+                  <li> How to Access VMs on Winbot for Browser Testing</li>
+               </ul>
+               <ol>
+                  <li> Use an RDC client to access Winbot. See INSTRUCTIONS FOR ACCESSING WINBOT AND TESTBOT if you need access.</li>
+                  <li> From the desktop start <span class="twikiNewLink">VirtualBox<a href="/t4/bin/edit/Intdev/VirtualBox?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span>. The icon is on the left side of the desktop. This is the Virtualization software running on Winbot.</li>
+                  <li> On the <span class="twikiNewLink">VirtualBox<a href="/t4/bin/edit/Intdev/VirtualBox?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span> control panel choose a VM from the menu on the left. IE10 for Windows 7 is the default browser on Winbot so there is not a VM for it. Click 'Start' to power on the VM.</li>
+               </ol>
+               <span class="spacer"></span>
+            </div>
+         </div>
+         <!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------Source Control Accounts------------------------------------------->
+         <h4>Source Control Accounts</h4>
+         <div class="package-details">
+            <div class="border">
+               <h2><u>Git Access</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> Most of our projects are on git. Internal ID team tools, documentation and tests, and WEM/CQ5</li>
+                  <li> <strong>Prerequisite:</strong> NT (Active Directory) Account, NIS+ Account</li>
+                  <li> <strong>Access:</strong> <a href="http://git-scm.com/" target="_top">http://git-scm.com/</a></li>
+                  <li> <strong>Instructions:</strong> </li>
+                  <li> <a href="http://wikicentral.cisco.com/display/WCM/Welcome+To+GIT#WelcomeToGIT-PC" target="_top">Git access and initial checkout instructions page</a></li>
+                  <li> <a href="http://www.sourcetreeapp.com/" target="_top">http://www.sourcetreeapp.com/ OS X gui git client</a></li>
+                  <li> Some people use Git Bash/Git GUI, some use Eclipse</li>
+               </ul>
+               <p></p>
+               <ol>
+                  <li>
+                     <ol>
+                        <li> See the initial checkout instructions page for how to get the NIS+ Account for Git access</li>
+                        <li> Download and install Git into the directory you want. </li>
+                        <li> Open Git Bash</li>
+                        <li> Navigate to directory where you want to install the project</li>
+                        <li> Type in: git clone ssh://wwwin-git-sjc/git/ecm/wem.git</li>
+                     </ol>
+                  </li>
+               </ol>
+               <span class="spacer"></span>
+               <h2><u>Adobe CQ5 and CRX DeLite? * This is outdated...please go for AEM6*</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> Our database and your local app instance. Please note this is outdated, please go for AEM 6</li>
+                  <li> <strong>Prerequisite</strong> NT account, CEC Account</li>
+                  <li> <strong>Access:</strong> <a href="http://cqbot:7007" target="_top">http://cqbot:7007</a>,   <a href="http://localhost:4502/welcome" target="_top">http://localhost:4502/welcome</a></li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> Get CQ here:  <a href="http://cqbot:7007" target="_top">http://cqbot:7007</a></li>
+                        <li> Download all the files at this page. </li>
+                        <li> Unzip the freshie.tar archive file into a new folder on your computer and call it "CQ". </li>
+                        <li> Once that is done, move all the other files that you downloaded into the same folder ("CQ").</li>
+                        <li> Open the folder crx-quickstart.</li>
+                        <li> Open the folder bin.</li>
+                        <li> Double click on start.bat.(This will start your internal instance of CQ.)</li>
+                        <li> You can now open CQ in a browser window by navigating to <a href="http://localhost:4502/libs/cq/core/content/login.html?resource=%2Fwelcome&amp;$$login$$=%24%24login%24%24" target="_top">http://localhost:4502/libs/cq/core/content/login.html?resource=%2Fwelcome&amp;$$login$$=%24%24login%24%24</a></li>
+                        <li> Log in with admin/admin (this is your local instance, so you don't use your own personal log in here)</li>
+                        <li> On the right nav, click on the link for CRXDE Lite. (This is your local instance. Bookmark this page so you can navigate directly to it in the future.)</li>
+                        <li> Download but don't unzip the polydor zip file (can we post it somewhere?)</li>
+                        <li> Click on the gecko in the upper left corner above the menu bar. This will take you back to the main page for CQ and all the tools included with CQ.</li>
+                        <li> Click on 'Packages' in the list on the right.</li>
+                        <li> Click on the 'Upload Package' button in the menu bar.</li>
+                        <li> Browse to the polydor zip file on your hard drive.</li>
+                        <li> Click on OK.</li>
+                        <li> Once it is uploaded, click on 'Install'.</li>
+                        <li> Click OK.</li>
+                        <li> Open Windows Explorer, and navigate to the CQ directory.</li>
+                        <li> Unzip the filevault.zip file into the same directory ('here').</li>
+                     </ol>
+                  </li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>Maven</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> Our project build and management tool for our local instance</li>
+                  <li> <strong>Prerequisite</strong> None</li>
+                  <li> <strong>Access:</strong> <a href="http://maven.apache.org/download.cgi" target="_top">http://maven.apache.org/download.cgi</a></li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> Download from the page at the above link.</li>
+                        <li> Once downloaded, follow the installation instructions at this <a href="http://maven.apache.org/download.cgi#Installation" target="_top">page.</a></li>
+                        <li> Open Git Bash</li>
+                        <li> Type in: mvn --version.</li>
+                        <li> If it doesn't see it, you might need to install Java JDK.</li>
+                     </ol>
+                  </li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>Java JDK</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> Java Development Kit (JDK) is a software development environment (platform) used for developing Java applications</li>
+                  <li> <strong>Prerequisite</strong> None</li>
+                  <li> <strong>Access:</strong> <a href="http://installbuilder.bitrock.com/java/" target="_top">http://installbuilder.bitrock.com/java/</a></li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> The JDK kit needs to be <strong>version 1.6.0_45 for Win64bit</strong>. Find it and download it from the page at the above link. You'll see the correct version JDK toward the bottom of the page.</li>
+                        <li> Download, install and set the Path variables as instructed onn the maven installation page (see link in the Maven section above)</li>
+                        <li> Once it's installed, close Git Bash and your terminal.</li>
+                        <li> Navigate to the start.bat again and launch it again.</li>
+                        <li> Open Git Bash.</li>
+                        <li> Type in: mvn --version</li>
+                        <li> It should tell you about it so you can confirm that Git sees it.</li>
+                     </ol>
+                  </li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>Check out the project from Git</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> We keep our projects on Git and each developer checks out a clone to do their development work in their own environment</li>
+                  <li> <strong>Prerequisite</strong> NT (Active Directory) Account, NIS+ Account, Git account</li>
+                  <li> <strong>Access:</strong> use Git Bash</li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> In Git Bash, navigate to the directory of your wem project (where you cloned the git project in the <strong>Git Access</strong> section)</li>
+                        <li> Type in: git fetch</li>
+                        <li> Type in: git checkout [name of the project branch your manager says to check out]  for example, if the current dev branch is BR_RESPONSIVE_W7.0, you would type: git checkout BR_RESPONSIVE_W7.0</li>
+                        <li> Type in: git pull</li>
+                        <li> Type in: mvn clean install</li>
+                        <li> Let it finish</li>
+                        <li> Type in: mvn clean install -P buildSetup,deploySetup</li>
+                        <li> Let it finish</li>
+                        <li> Go to the terminal window with the running CQ instance and close it.</li>
+                        <li> Restart it by clicking on the start.bat file</li>
+                        <li> Back in Git Bash, type in: mvn clean install -P buildCore,deployCore</li>
+                        <li> Let it finish</li>
+                        <li> Type in: mvn clean install -P buildDm,deployDm</li>
+                        <li> Let it finish</li>
+                        <li> Type in: mvn clean install -P buildSecurity,deploySecurity</li>
+                        <li> Let it finish</li>
+                        <li> Type in: mvn clean install -P buildCecNgi,deployCecNgi</li>
+                        <li> Let it Finish</li>
+                        <li> Type in: mvn clean install -P buildCecNgiContent,deployCecNgiContent</li>
+                        <li> Let it Finish</li>
+                     </ol>
+                  </li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>Aptana Studio</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> We use Aptana to transfer changes in working files to our local instance and vice versa through <span class="twikiNewLink">VaultClipse<a href="/t4/bin/edit/Intdev/VaultClipse?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span>. Aptana is just like Eclipse, only not as heavy so it is faster.</li>
+                  <li> <strong>Prerequisite</strong> None</li>
+                  <li> <strong>Access:</strong> <a href="http://www.aptana.com/products/studio3/download" target="_top">http://www.aptana.com/products/studio3/download</a></li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> Download and install Aptana Studio 3.0 from the link above. Get the standalone version</li>
+                        <li> Launch Aptana</li>
+                        <li> Click on Help &gt; Install New Software</li>
+                        <li> Click on the link for Available Software Sites</li>
+                        <li> Be sure the checkbox is checked for Eclipse Indigo Update Site. If you see vaultclipse in there, check that one too.</li>
+                        <li> If vaultclipse is not in the list, click on the Add button.</li>
+                        <li> In the Name text box, type in <span class="twikiNewLink">VaultClipse<a href="/t4/bin/edit/Intdev/VaultClipse?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span>.</li>
+                        <li> In the Location text box, type in: <a href="http://vaultclipse.sourceforge.net/update" target="_top">http://vaultclipse.sourceforge.net/update</a></li>
+                        <li> Click on OK.</li>
+                        <li> Click on OK in the Available Software Sites popup box too.</li>
+                        <li> Back in the Available Software popup, in the 'Work with' drop down, select Eclipse Indigo Update Site.</li>
+                        <li> In the results in the lower box, expand the 'Collaboration' category</li>
+                        <li> Select Eclipse EGit, Eclipse JGit, Eclipse, EGit Mylyn <span class="twikiNewLink">GitHub<a href="/t4/bin/edit/Intdev/GitHub?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span> Feature, EGit Mylyn and m2e - Maven Integration for Eclipse.</li>
+                        <li> Click on Next.</li>
+                        <li> Click on Finish. No need to restart Aptana yet. There are other programs to install too.</li>
+                        <li> Again, click on Help &gt; Install New Software.</li>
+                        <li> In the 'Work with' drop down, select <span class="twikiNewLink">VaultClipse<a href="/t4/bin/edit/Intdev/VaultClipse?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span>.</li>
+                        <li> In the results in the lower box, select <span class="twikiNewLink">VaultClipse<a href="/t4/bin/edit/Intdev/VaultClipse?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span> Core. </li>
+                        <li> Click on Next.</li>
+                        <li> Click on Finish and agree to let Aptana close and restart the application.</li>
+                        <li> From the menu, select 'Window &gt; Show View &gt; Other'</li>
+                        <li> Select 'Git &gt; Git Repositories'</li>
+                        <li> It will appear in the lower right pane. Click and drag it up to the upper left one next to the 'Project Explorer' view.</li>
+                        <li> Click on the 'Project Explorer' view </li>
+                        <li> Right click and select 'Import'</li>
+                        <li> Select the second 'Git' entry, and then 'Projects from Git'.</li>
+                        <li> Click Next. Select 'Local'. Click Next. Click Add.</li>
+                        <li> Navigate to the directory of your wem project (where you cloned the git project in the 'Git Access' step).</li>
+                        <li> Click Finish.</li>
+                        <li> Make sure the 'Import as General Project' radio button is selected. </li>
+                        <li> Click Next, and Next, and then Finish.</li>
+                        <li> You should now see the project listed in your 'Project Explorer' and 'Git Repositories' view.</li>
+                        <li> From the main menu, select 'Window &gt; Preferences'.</li>
+                        <li> Select <span class="twikiNewLink">VaultClipse<a href="/t4/bin/edit/Intdev/VaultClipse?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span>.</li>
+                        <li> In the Vault Directory text box, enter the path of the vault-cli-2.4.18 file that was unzipped from the filevault file in the CQ directory.</li>
+                        <li> Click on Apply. Click on OK.</li>
+                     </ol>
+                  </li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>Environment Testing</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> You now have Git installed, a clone of the Git repository, your CQ instance, Aptana/Eclipse set up, and the ability for Aptana to talk to CQ and vice versa using Vault, as well as the ability to upload your changes to the Git repository. </li>
+                  <li> <strong>Prerequisite</strong> Git, repo checked out, CQ, Aptana, Vault</li>
+                  <li> <strong>Access:</strong> Refer to other steps above</li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> In <strong>Aptana</strong>, open any .jsp file in your wem project (be sure you can locate the same file in CQ). </li>
+                        <li> Edit it by adding some text somewhere on the page. Save it.</li>
+                        <li> You will notice that it now has a star/arrow next to the file in the navigator. This tells you that this file is different than what is on the Git repository. </li>
+                        <li> Highlight the folder that this file belongs to, right click on it, and select <span class="twikiNewLink">VaultClipse<a href="/t4/bin/edit/Intdev/VaultClipse?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span> &gt; Import (in Eclipse, you select Team &gt; <span class="twikiNewLink">VaultClipse<a href="/t4/bin/edit/Intdev/VaultClipse?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span> &gt; import). </li>
+                        <li> Vault commands only work on folders, not on individual files, so you do need to call the command from the closest folder that the file belongs to.</li>
+                        <li> The <strong>'Import'</strong> command means that you are sending <strong>from Aptana to your CQ instance</strong>.</li>
+                        <li> Open your CQ/CRXDELite. </li>
+                        <li> Navigate to the same file, open it and see if the changes that you made are now appearing on the file in CQ too.  If you see the changes, then the Import command worked as intended.</li>
+                        <li> In the open CQ file, make a change to the new text and save it.  </li>
+                        <li> Go back to Aptana, and right click on the folder of that file again, and select <span class="twikiNewLink">VaultClipse<a href="/t4/bin/edit/Intdev/VaultClipse?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span> &gt; Export.  </li>
+                        <li> You should now see the change from the CQ file showing up in the same file in Aptana. This means that Vault is working correctly. </li>
+                     </ol>
+                  </li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>Sublime Text</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> This is a very convenient text editor. Easier than using Aptana to edit files.</li>
+                  <li> <strong>Prerequisite</strong> None</li>
+                  <li> <strong>Access:</strong> <a href="http://www.sublimetext.com/2" target="_top">http://www.sublimetext.com/2</a></li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> Download and install Sublime Text 2.0.</li>
+                        <li> Open Sublime Text 2.0.</li>
+                        <li> Select File &gt; Open Folder.</li>
+                        <li> Navigate to your wem folder and click OK.</li>
+                        <li> The wem directory will now be in the Sublime navigator.</li>
+                        <li> If you make changes in the files while in Sublime, and then save them, these changes will be seen in Aptana. You will need to use Vault in Aptana to move those changes to your CQ instance.</li>
+                     </ol>
+                  </li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>Sass</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> Sass is a CSS pre-processor. The wem project uses Sass to create conditional styling in Sass format and Sass converts it into standard CSS.</li>
+                  <li> <strong>Prerequisite</strong> Ruby</li>
+                  <li> <strong>Access:</strong> <a href="http://sass-lang.com/" target="_top">http://sass-lang.com/</a></li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> Follow the directions <a href="http://sass-lang.com/install" target="_top">here</a> to install Sass. They have links to Ruby if you need it.</li>
+                        <li> Read the <a href="http://sass-lang.com/guide" target="_top">brief guide</a> so you'll know how it works from an overview level. Our project uses .scss file format.</li>
+                        <li> <a href="https://docs.google.com/a/oneteamtech.com/spreadsheets/d/1f2q43SwMmqHnxtaiNUKpd99ucgnwoqn1_L6Sr3Govmw/edit?pli=1#gid=0" target="_top">Here</a> is a document with the hierarchical structure of the wem project css files and which css files are compiled into them. </li>
+                        <li> The lowest level of the css files are the ones that are compiled by sass. If you look at them in their folders, you'll see the .scss version of the file. In the .scss file, you'll see which other .scss files are being included.</li>
+                        <li> Any time that you make changes to the sass files, you will need to compile the css files that include those sass files. The Sass <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#using_sass" target="_top">documentation</a> has details on how to compile to update the css with the changes made in the .scss files.</li>
+                        <li> After the lower level css files are compiled you will need to refresh any css lib files in CQ that include those compiled css files - open the lib file, type in a space at the bottom of the file, and save it. It forces a refresh so that it will include the recompiled css file.</li>
+                     </ol>
+                  </li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>Reset and Git Configuration</u></h2>
+               <p>
+                  You are done with setup.
+                  Open Git Bash and navigate to your wem directory. Type in 'git reset --hard HEAD' and press the Enter key. 
+                  This will remove the test changes that you just made from Aptana/Sublime.
+                  Then type in 'mvn clean install -P buildCore,deployCore' to reset your CQ instance files too.
+               </p>
+               <p>
+                  You are ready to use your environment to do your assigned tasks.
+               </p>
+               <p>
+                  <strong>Configure Git:</strong>    
+               </p>
+               <p>
+                  To configure your git bash to know you when working with the repo: 
+               </p>
+               <ol>
+                  <li>
+                     <ol>
+                        <li> git config --global user.name "your user name"</li>
+                        <li> git config --global user.email <a href="mailto:you@example.com">you@example.com</a></li>
+                     </ol>
+                  </li>
+               </ol>
+               <p>
+                  To configure git bash to push changes only to the branch that you are working with, when you use the push command: 
+               </p>
+               <ol>
+                  <li>
+                     <ol>
+                        <li> git config --global push.default simple</li>
+                     </ol>
+                  </li>
+               </ol>
+               <p></p>
+               <p>
+                  When you are ready to push your changes up to the Git repository for the project, use Git Bash. The files that you see in Aptana/Sublime are the files that get pushed up to the Git repository.
+               </p>
+               <p></p>
+               <span class="spacer"></span>
+               <h2><u>**everything below here may not be necessary. check with your manager. **</u></h2>
+               <span class="spacer"></span>
+            </div>
+         </div>
+         <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------Publishing Accounts------------------------------------------->
+         <h4>Publishing Accounts - you may not be publishing to all of these systems.</h4>
+         <div class="package-details">
+            <div class="border">
+               <h2><u>sitegenprod-ds-1 and iorapps-prod-1</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> sitegenprod-ds-1 and iorapps-prod-1 are fileshares to register ( xsl for 1.x ) component templates during different stages of development.</li>
+                  <li> <strong>Prerequisite:</strong> Email account</li>
+                  <li>
+                     <strong>Instructions:</strong> Request <code>sitegenprod-ds-1 and iorapps-prod-1</code> account by following these instructions (adapted from instructions from Prassana as of Oct 2012 ): 
+                     <ol>
+                        <li> Proceed to <a href="http://eman.cisco.com/SERVICE/OnRamp/" target="_top">OnRamp</a></li>
+                        <li> Click "New Account Request"</li>
+                        <li> Select "Request For Myself"</li>
+                        <li> Navigate to: Unix Servers &gt; IS &gt; Unix Login Shell Access &gt;  sitegenprod-ds-1 </li>
+                        <li> Check the checkbox on the right </li>
+                        <li> Scroll to the bottom and click <code>"Add to Cart"</code></li>
+                        <li> Repeat for iorapps-prod-1</li>
+                        <li> Click <code>"View Cart"</code> at the top of the page</li>
+                        <li> Click <code>"Checkout"</code></li>
+                        <li> Fill out the request form and submit.</li>
+                     </ol>
+                  </li>
+                  <li> Resource id <a href="http://eman-core.cisco.com/SERVICE/OnRamp/details/71546727" target="_top">1546727</a>  for sitegenprod-ds-1</li>
+               </ul>
+               <span class="spacer"></span>
+               <h2><u>1.x Publishing Excel import</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> File system that PRF (Page Rendering Framework) uses when building pages in the Data Stage Environment. You will need access to both the excel import tool and to a user share on the site.</li>
+                  <li> <strong>Prerequisite:</strong> NT account, CEC account</li>
+               </ul>
+               <p> </p>
+               <ul>
+                  <li>  - Excel Import Tool* - Information Object Repository (IOR)</li>
+                  <li> Location: <a href="http://sitegenprod-ds-1.cisco.com:20002/excelimport/index.html" target="_top">http://sitegenprod-ds-1.cisco.com:20002/excelimport/index.html</a> for data stage</li>
+                  <li> and <a href="http://iorapps-prod-1.cisco.com:10005/excelimport/index.html" target="_top">http://iorapps-prod-1.cisco.com:10005/excelimport/index.html</a> for prod</li>
+                  <li>
+                     Test: Submit a blank form to test your access. Your CEC password should log you in. If not... 
+                     <ol>
+                        <li> Go to to <a href="http://wwwin.cisco.com/it/services/" target="_top">http://wwwin.cisco.com/it/services/</a></li>
+                        <li> Select Manage Cases &amp; Contact Support</li>
+                        <li> Select = "Open a case"</li>
+                     </ol>
+                  </li>
+               </ul>
+               <p></p>
+               <span class="spacer"></span>
+               <h2><u>* 2.0 web publishing system for assets</u></h2>
+               <ul>
+                  <li>
+                     <strong>Prerequisite:</strong> Email account  <img src="/t4/pub/TWiki/TWikiDocGraphics/help.gif" alt="HELP" title="HELP" width="16" height="16" border="0"> 
+                     <ul>
+                        <li>
+                           Instructions: Visit <a href="http://eman.cisco.com/SERVICE/OnRamp/index.pcgi" target="_top">OnRamp</a> site and click through path below, make sure you click the checkbox next to "Content Manager (cdc framework cm)" and add to cart, check out. 
+                           <ul>
+                              <li>
+                                  <span class="twikiNewLink">OnRamp<a href="/t4/bin/edit/Intdev/OnRamp?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span> &gt; New Account Request &gt; Request for Myself &gt; Documentum Web Publisher - CDC (cisco.com) &gt;  
+                                 <ol>
+                                    <li> Production &gt; Frame Work &gt; Frame Work (all) &gt; Content Manager (cdc framework cm)</li>
+                                    <li> Dev &gt; CMT/MKTG &gt; c_cdc_grp</li>
+                                    <li> Production &gt; Frame Work &gt; Frame Work (all) &gt; IWE-Quad &gt; Content Manager (cdc iwe_quad cm)</li>
+                                  
+                                 </ol>
+                              </li>
+                              <li>
+                                test the account before you need it as follows (very carefully!! The instructions below won't do anything, but this is production!!): 
+                                 <ol>
+                                    <li> once you have the account, go to /web/fw/j/intelligent_hierarchy.js and</li>
+                                    <li> check out intelligent_hierarchy.js</li>
+                                    <li> cancel the checkout</li>
+                                 </ol>
+                              </li>
+                           </ul>
+                        </li>
+                        <li> Open separate cases  to get access to each. Be sure to put a note that you are on the ID team and need access to publish framework assets.</li>
+                     </ul>
+                  </li>
+                  <li> Note: This tool seems to work best in Chrome. It may give you a message complaining that Chrome is not supported. Ignore that.</li>
+               </ul>
+               <span class="spacer"></span>						
+            </div>
+         </div>
+         <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------Software some IDs use------------------------------------------->
+         <h4>Software some IDs use</h4>
+         <div class="package-details">
+            <div class="border">
+               <h2><u>Velocity Editor/JSP Editor plugin for Eclipse</u></h2>
+               <ul>
+                  <li>
+                     From any Eclipse distribution, you can add the Veloclipse plugin by using the software update function: 
+                     <ol>
+                        <li> Under the <code>"Help"</code> menu choose <code>"Install New Software"</code></li>
+                        <li> Click <code>"Add"</code></li>
+                        <li>
+                           Add a new update location to checkout the plugin: 
+                           <ol>
+                              <li> name: <code>"Veloclipse"</code></li>
+                              <li> URL: <code>"http://veloeclipse.googlecode.com/svn/trunk/update/"</code></li>
+                           </ol>
+                        </li>
+                        <li> Click <code>"Next"</code> , choose the plugin, get past agreements, and allow Eclipse to restart.</li>
+                        <li> .vm files, .jsp and .html files will open using the Veloclipse Editor, with *these fanta   </li>
+                     </ol>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+	  </div>
+   </body>
+</html>

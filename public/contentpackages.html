@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <!--<base href="/">-->
+  <base href=".">
+  <title>Sandbox Quick Start Guide</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style type="text/css" media="screen">
+      a.bookmarklet {
+        background: #76cc1e;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+      }
+      ul.testing-bookmark li {padding-bottom:10px}
+    h5 { text-decoration:underline;font-weight:bold;padding-bottom:10px;}
+    h5 span { text-decoration:none;font-weight:normal;padding-bottom:10px;}
+    </style>
+  
+
+
+</head>
+<body>
+
+  <!-- the navbar gets inserted here by jquery -->
+
+  <div class="container">
+
+  <!-- Main component for a primary marketing message or call to action -->
+
+  <div class="row">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#content_packages_process">Content package process notes</a></li>
+      <li class=""><a data-toggle="tab" href="#content_packages_index">Content package index</a></li>
+    </ul>
+    <div class="tab-content well">
+
+      <div id="content_packages_process" class="tab-pane fade active in">
+        <ul>
+			<li>the scope of the package should be well defined and documented in the index</li>
+			<li>it should go in git in a standard way</li>
+			<li>it should go in the pom/mvn in a standard way (including into the readme)</li>
+			<li>it should go into jenkins content deploy jobs in a standard way</li>
+			<li>it should be tagged properly to show up in the test content listing component</li>
+		</ul>
+      </div>
+
+		 <div id="content_packages_index"  class="tab-pane fade">
+
+	 </div>
+
+	</div>
+
+    </div>
+
+
+  </div>
+  <div class="footer">
+    <p>&copy; All Rights Reserved, Cisco Systems 2014</p>
+  </div>
+</div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/Markdown.Converter.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+    jQuery(document).ready(function jQueryReady($) {
+
+      $.get("docs/documentation/contentpackages/index.html").success(function (data) {
+        $("#content-package").prepend(data);
+      });
+
+
+      $.get("navbar.html").success(function (data) {
+        $("body").prepend(data);
+      });
+	   $.get("/wem_files/test/contentPackage/index.html").success(function (data) {
+           $("#content_packages_index").html(data);
+           $(".package-details").css("width","100%");
+           $("nav h4").css("width","100%");
+    });
+	});
+    </script>
+
+  </body>
+  </html>

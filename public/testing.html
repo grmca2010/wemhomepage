@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <!--<base href="/">-->
+  <base href=".">
+  <title>Sandbox Quick Start Guide</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style type="text/css" media="screen">
+      a.bookmarklet {
+        background: #76cc1e;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+      }
+      ul.testing-bookmark li {padding-bottom:10px}
+	  h5 { text-decoration:underline;font-weight:bold;padding-bottom:10px;}
+    h5 span { text-decoration:none;font-weight:normal;padding-bottom:10px;}
+    </style>
+</head>
+<body>
+ <!-- Fixed navbar -->
+
+<div class="container">
+
+  <!-- Main component for a primary marketing message or call to action -->
+
+
+  <div class="row marketing">
+
+  <div class="container">
+    <h4>Testing</h4>
+	<br><h5>Framework Bookmarklet<span>(WEM)</span></h5>
+    <p>
+      The <strong>framework Bookmarklet</strong> allows you to run
+      any combination of the framework jasmine tests on any Cisco page.
+    </p>
+    <p class="important">
+      Just drag
+      <!-- testRunnerBookMarklet.js?'+Math.floor((+new Date)/(864e5));}})(); -->
+      <script>
+      //for global variables test only,GlobalVarsSpec.js
+
+       var bookmarkletLocation = location.protocol + '//' +document.location.hostname+":3010/";
+
+       function changeParam(){
+		 if(document.getElementById("EnableStrict").checked == true)
+			   {
+			document.getElementById("bookmarklet").href="javascript:(function(){if(window.testRunnerBookmarklet!==undefined){testRunnerBookmarklet();}else{var%20createScriptElement=document.createElement('script');createScriptElement.setAttribute('id','bookmarkscript');createScriptElement.src='"+bookmarkletLocation+"helpers/testRunnerBookmarklet.js?paramVal=true';var%20att=document.createAttribute('data-hostname');att.value='"+bookmarkletLocation+"';createScriptElement.setAttributeNode(att);document.body.appendChild(createScriptElement);}})();"
+
+			}
+		 else{
+			document.getElementById("bookmarklet").href="javascript:(function(){if(window.testRunnerBookmarklet!==undefined){testRunnerBookmarklet();}else{var%20createScriptElement=document.createElement('script');createScriptElement.setAttribute('id','bookmarkscript');createScriptElement.src='"+bookmarkletLocation+"helpers/testRunnerBookmarklet.js?paramVal=false';var%20att=document.createAttribute('data-hostname');att.value='"+bookmarkletLocation+"';createScriptElement.setAttributeNode(att);document.body.appendChild(createScriptElement);}})();"
+			}
+       }
+
+       document.write("<a id='bookmarklet' href=javascript:(function(){if(window.testRunnerBookmarklet!==undefined){testRunnerBookmarklet();}else{var%20createScriptElement=document.createElement('script');createScriptElement.setAttribute('id','bookmarkscript');createScriptElement.src='"+bookmarkletLocation+"helpers/testRunnerBookmarklet.js?paramVal=false';var%20att=document.createAttribute('data-hostname');att.value='"+bookmarkletLocation+"';createScriptElement.setAttributeNode(att);document.body.appendChild(createScriptElement);}})(); class=bookmarklet>framework - "+ location.hostname +"</a>");
+       </script>
+      to your bookmarks bar!
+    </p>
+    <p><input type="checkbox" name="GlobalVarSpec"  id="EnableStrict" onclick="changeParam()"/>Enable compatability global variable</p>
+    <p>
+      The bookmarklet will load its logic from an external javascript file,
+      <code><a target="_BLANK" id="testRunnerBookmarklet" href="testRunnerBookmarklet.js">jasmine/helpers/testRunnerBookmarklet.js</a></code>
+      which in turn calls a helper script,
+      <code><a target="_BLANK" id="testLister" href="testLister.js">testLister.js</a></code>
+      to get the current list of available jasmine tests in jasmine/specs folder.
+    </p>
+    <p>
+      Once the user has selected the test(s) to run,  the jasmine css
+      and js are loaded, and then the relevant jasmine tests are injected
+      into the page and the results are reported at the bottom of the page.
+    </p>
+    <br><h5>Framework Bookmarklet <span>(Standalone : If Jenkin job fails)</span></h5>
+    <p>
+      If Jenkins job failed to pull the WEM repository (OR) you want to run the bookmarklet server on your local machine, just follow the below steps to start the node.js service
+      <ul class="testing-bookmark">
+        <li>clone the bookmarklet repository:  <a href="http://gitlab.cisco.com/sgundepa/node-bookmarklet.git" target="_blank">http://gitlab.cisco.com/sgundepa/node-bookmarklet.git</a>  <br><code>git clone http://gitlab.cisco.com/sgundepa/node-bookmarklet.git</code></li>
+        <li>Navigate to the bookmarklet folder<br><code>cd jasmine/helpers/node-bookmarklet/</code></li>
+        <li>Run the npm install command <br><code>npm install</code></li>
+        <li>Start the node.js service <br><code>node testLister.js</code></li>
+        <li>Place all your spec file under spec folder<br><code>jasmine/specs/</code></li>
+        <li>Use the below code to create/Modify your bookmarklet tab on your browser</br>
+        <code>javascript: (function() { if (window.testRunnerBookmarklet !== undefined) { testRunnerBookmarklet(); } else { var createScriptElement = document.createElement('script'); createScriptElement.src = 'http://localhost:3010/helpers/testRunnerBookmarklet.js?'; var att = document.createAttribute('data-hostname'); att.value = 'http://localhost:3010/'; createScriptElement.setAttributeNode(att); document.body.appendChild(createScriptElement); }})();</code>
+        </li>
+      </ul>
+    </p>
+  </div>
+
+
+</div>
+<div class="footer">
+  <p>&copy; All Rights Reserved, Cisco Systems 2014</p>
+</div>
+</div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $.get("navbar.html").success(function (data) {
+          $("body").prepend(data);
+        });
+
+		$(function() {
+			console.log( "ready!" );
+			var nodebookmarklet_root = location.protocol + '//' + document.location.hostname+":3010";
+			$("#testRunnerBookmarklet").attr("href",nodebookmarklet_root+"/helpers/"+$("#testRunnerBookmarklet").attr("href"));
+      $("#testLister").attr("href",nodebookmarklet_root+"/getSpecJson");
+
+		});
+    </script>
+  </body>
+  </html>

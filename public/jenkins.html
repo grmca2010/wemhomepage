@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <!--<base href="/">-->
+  <base href=".">
+  <title>Sandbox Quick Start Guide</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+ <!-- Fixed navbar -->
+
+
+<div class="container">
+
+  <!-- Main component for a primary marketing message or call to action -->
+
+  <div class="row">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#sandbox_jenkins_jobs">Sandbox Jenkins Jobs</a></li>
+      <li><a data-toggle="tab" href="#jenkins_caf">Sandbox Jenkins Care and Feeding</a></li>
+      <li><a data-toggle="tab" href="#maven_section">Maven Jobs</a></li>      
+    </ul>
+    <div class="tab-content well">
+      
+      <div id="sandbox_jenkins_jobs" class="tab-pane fade in active">
+        The following is a list of jenkins jobs pre-populated in the sandbox environment.  Please see the quickstart docs before running any of these, in some cases order is important, especially at first.<br/><br/>
+
+        Also note that jobs that do git and mvn tasks will take forever the first time you run them, as the inital git clone is slow and the mvn dependency downloading is also slow.<br/><br/>
+
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job1">
+                  CQ_KILL
+                </a>
+              </h4>
+            </div>
+            <div id="job1" class="panel-collapse collapse in">
+              <div class="panel-body">
+                This job forcibly kills all CQ instances running on the machine by process ID. It also lists the processes before and after. With any luck the second list should be empty. 
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job2">
+                  CQ_PURGE_LOGS
+                </a>
+              </h4>
+            </div>
+            <div id="job2" class="panel-collapse collapse">
+              <div class="panel-body">
+                This job purges the file logs of cq instance for every 4 hours.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job3">
+                  CQ_REINSTALL
+                </a>
+              </h4>
+            </div>
+            <div id="job3" class="panel-collapse collapse">
+              <div class="panel-body">
+                Completely wipes out your current CQ instance and makes a fresh one from scratch. Run CQ_RESTART after this.
+				If you have a box with CQ LDAP integration you will then need to redeploy
+				security and restart CQ a second time.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job4">
+                  CQ_RESTART
+                </a>
+              </h4>
+            </div>
+            <div id="job4" class="panel-collapse collapse">
+              <div class="panel-body">
+                Restarts your CQ instance. This must holds the DEPLOY_SECURITY job as the upstream job.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job5">
+                  CQ_TAIL_ERRORS
+                </a>
+              </h4>
+            </div>
+            <div id="job5" class="panel-collapse collapse">
+              <div class="panel-body">
+                This job runs the tail command to check error.log file for any errors, but we need to kill the job manually.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job6">
+                  DEPLOY_LOCALHOST
+                </a>
+              </h4>
+            </div>
+            <div id="job6" class="panel-collapse collapse">
+              <div class="panel-body">
+                This is a parameterized job that deploys a wide range of targets. It takes the mvn targets and the branch name as params, where the branch name must line up with a jenkins job with the same name that does a build on the branch. Right now if you try to do security and core in one go it often fails. Stock content deploy is chained after this, which we may or may not want.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job7">
+                  DEPLOY_SECURITY
+                </a>
+              </h4>
+            </div>
+            <div id="job7" class="panel-collapse collapse">
+              <div class="panel-body">
+                This job will deploy the security package before the CQ instance starts.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job8">
+                  DEPLOY_STOCK_CONTENT
+                </a>
+              </h4>
+            </div>
+            <div id="job8" class="panel-collapse collapse">
+              <div class="panel-body">
+                Deploys a bunch of stock content with packages required to be deployed are configured in the choice parameter section, this artifacts are installed in the mapped local host and port in the Goals and Options sections in the Build section of Pre build steps.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job9">
+                  GIT_WEM
+                </a>
+              </h4>
+            </div>
+            <div id="job9" class="panel-collapse collapse">
+              <div class="panel-body">
+                This job is configured with the required branch to be deployed after the git repository cloning, so whatever new package included in this branch will be deployed in the local host through maven targets such as security and core jobs. Here deploying in the local host is configured as downstream job with the value as DEPLOY_LOCALHOST.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job10">
+                  GIT_WEM_HOOKS
+                </a>
+              </h4>
+            </div>
+            <div id="job10" class="panel-collapse collapse">
+              <div class="panel-body">
+                This job should be exectued before running GIT_WEM job. Running this job will create the list of open brances to do the build in GIT_WEM job.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job11">
+                  JENKINS_LIST_PLUGINS
+                </a>
+              </h4>
+            </div>
+            <div id="job11" class="panel-collapse collapse">
+              <div class="panel-body">
+                This job will list the plugin installed in Jenkins.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job12">
+                  JENKINS_PURGE_WORKSPACE
+                </a>
+              </h4>
+            </div>
+            <div id="job12" class="panel-collapse collapse">
+              <div class="panel-body">
+                Run this job to purge jenkins workspace.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job13">
+                  TEST_BATCH_RUNNER
+                </a>
+              </h4>
+            </div>
+            <div id="job13" class="panel-collapse collapse">
+              <div class="panel-body">
+                This runs a bunch of jasmine tests in phantom. Please see the wem repo under wem/test/framework/jasmine/integration/batchRunner.json for the config file to include the specs and respective urls to be tested. Test results are captured in the batchrunnerOutput directory by default as the xml files.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job14">
+                  TEST_CONTENT_CHECK
+                </a>
+              </h4>
+            </div>
+            <div id="job14" class="panel-collapse collapse">
+              <div class="panel-body">
+                This job is configured with the HTTP request with urls ensures displaying the contents reflects after the respective stock content packages are installed through its upstream job DEPLOY_STOCK_CONTENT.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job15">
+                  TEST_JS_LINT
+                </a>
+              </h4>
+            </div>
+            <div id="job15" class="panel-collapse collapse">
+              <div class="panel-body">
+                This maven job is to clean the javascript files available in fw/j and sub folders - during every checkout JS Lint plug-in will be triggered to run.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job16">
+                  TEST_NODE_CHECK_LOCALHOST
+                </a>
+              </h4>
+            </div>
+            <div id="job16" class="panel-collapse collapse">
+              <div class="panel-body">
+                This job is used to verify the installed bundles in CQ environment.
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#job17">
+                  TEST_ZOMBIE
+                </a>
+              </h4>
+            </div>
+            <div id="job17" class="panel-collapse collapse">
+              <div class="panel-body">
+                Runs the headless zombie/jasmine tests.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     <div id="jenkins_caf" class="tab-pane fade">
+      <ul>
+        <li>Creating new job in Jenkins
+            <ul>
+              <li>New jobs can be created by clicking the New Item link in the dashboard.
+              </li>
+              <li>For Eg:- creating the maven jobs - Selecting the maven projects, Jenkins will take advantage from the POM.xml and build the project</li>
+              <li>Alternately you can copy a pre-existing job, an example is if you want the same basic job but want to change a couple of properties.</li>
+            </ul>
+        </li>
+        <li>Workspace Management
+            <ul>
+                <li>The workspace directory is where Jenkins builds your project, it contains the source code which Jenkins checks out using the configured repository URL (Eg: ssh://xxxyyyzzz@wwwin-git-sjc/git/ecm/wem.git),
+plus any files generated by the build itself.</li>
+                <li>New workspaces are not created for every successive build instead the same workspace directory is reused each and every time you build.</li>
+                <li>There is not much deviation in the disk space occupied during every build.</li>
+                <li>Here GIT_WEM job is configured as the upstream job as many other jobs depends upon it.</li>
+            </ul>
+        </li>
+        <li>Making Puppet refresh your jobs
+            <ul>
+                <li>Most jobs are tracked by puppet. Changes to pre-existing jobs will result in the jobs being restored by puppet. 
+                </li>
+                <li><u>Creating new jobs or modifying existing ones:</u>
+                    <ul>
+                        <li>You can create or copy existing jobs (during the creation process) at any time. Puppet will not interfere with these jobs.<br/><br/>
+                            Example: if you create a new job and call it “Deploy Remote” you can copy from DEPLOY_LOCALHOST as a starting point.<br/><br/>
+                            It’s recommended that if you want to change a pre-existing job, it’s better to copy it to a new on and make your changes in the new one. 
+                        </li>                        
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <!--<li>Disk usage
+          <ul>
+             <li>This section displays the amount of space is used with respects to each builds, jobs and workspace.</li>
+              <li>User can even record the disk usage over regular time intervals.</li>    		      
+		  </ul>
+        </li> -->
+
+       </ul>
+     </div>
+      <div id="maven_section" class="tab-pane fade">To run builds in this repo you will need Apache Maven and an instance of Adobe CQ to deploy to (localhost by default)<br/>
+If you haven't done so in a while it's probably a good idea to run:<br/><br/>
+
+  mvn clean install<br/><br/>
+
+(This will initialize the master pom into your local ~/.m2 directory so it can effectively resolve dependencies for the build / deploy maven profiles)<br/>
+
+Once you've initialized the master pom you can do builds and deploys via the following:<br/><br/>
+
+  mvn clean install -P [buildProfile],[deployProfile]<br/><br/>
+
+Note: BuildProfile and DeployProfile are available in the pom.xml file</div>
+
+    </div>
+
+
+  </div>
+  <div class="footer">
+    <p>&copy; All Rights Reserved, Cisco Systems 2014</p>
+  </div>
+</div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/Markdown.Converter.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function jQueryReady() {
+        var converter = new Markdown.Converter(),
+        /* Alias the conversion method to make it easier to swap libraries in the future. */
+        markdownToHtml = converter.makeHtml;
+
+        jQuery.get("docs/documentation/jenkins/jenkins_jobs.md").success(function (data) {
+          jQuery("#advJenkins").append(markdownToHtml(data));
+        });
+
+        jQuery.get("docs/documentation/jenkins/Generic_free_style_jobs.md").success(function (data) {
+          jQuery("#advJenkins").append(markdownToHtml(data));
+        });
+
+        jQuery.get("docs/documentation/jenkins/JenkinsConfigs_Puppet.md").success(function (data) {
+          jQuery("#advJenkins").append(markdownToHtml(data));
+        });
+    
+        $.get("navbar.html").success(function (data) {
+          $("body").prepend(data);
+        });
+    
+      });
+    </script>
+
+  </body>
+  </html>

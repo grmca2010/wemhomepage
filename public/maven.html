@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <!--<base href="/">-->
+  <base href=".">
+  <title>Sandbox Quick Start Guide</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+ <!-- Fixed navbar -->
+
+<div class="container">
+
+  <!-- Main component for a primary marketing message or call to action -->
+
+  <div class="row">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#sbx_mvn">using mvn with your sandbox</a></li>
+      <li><a data-toggle="tab" href="#wem_profiles">WEM Profiles</a></li>
+    </ul>
+    <div class="tab-content well">
+      <div id="sbx_mvn" class="tab-pane fade in active">
+        <h3>Using Jenkins to trigger mvn tasks</h3>
+          This is the most common way that you will use mvn to interact with your sandbox environment.  There are a number of jenkins jobs already populated in the sandbox and they can be copied and modified to do most routine build, test and deploy tasks.
+        <h3>Using command line mvn</h3>
+          In general sandboxes don't come with a shell account so running mvn directly on the command line on the sandbox will be uncommon.  However, if you are set up to do CQ deploys using mvn from your own machine already, most of those tasks can take a hostname argument that wil lallow them to deploy directly to the sandbox.  (Do we have docs for this?)
+      </div>
+      <div id="wem_profiles" class="tab-pane fade in">
+        
+        </pre>
+      </div>
+
+    </div>
+
+
+  </div>
+  <div class="footer">
+    <p>&copy; All Rights Reserved, Cisco Systems 2014</p>
+  </div>
+</div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/Markdown.Converter.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function jQueryReady($) {
+        var converter = new Markdown.Converter(),
+        /* Alias the conversion method to make it easier to swap libraries in the future. */
+        markdownToHtml = converter.makeHtml;
+
+        $.get("/docs/documentation/maven/wem_profiles.md").success(function (data) {
+          $("#wem_profiles").append(markdownToHtml(data));
+        });
+            
+        $.get("navbar.html").success(function (data) {
+          $("body").prepend(data);
+        });
+        $.get("wem_files/README.txt").success(function (data) {
+               $("#wem_profiles").html("<pre>"+data+"<pre>");
+        });   
+
+    
+      });
+    </script>
+
+  </body>
+  </html>

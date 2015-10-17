@@ -1,0 +1,306 @@
+<html>
+   <head>
+      <title>Research content packages </title>
+      <script src="http://www.cisco.com/web/fw/lib/jquery-1.4.2.js"></script>
+      <style>
+         body {
+         font-family: arial, helvetica, sans-serif;
+         }
+         #gettingStarted {
+         margin: 20px 0px 0px 15px;
+         }
+         #gettingStarted h2 {
+         font-size: 14px;
+         font-weight: bold;
+         color: #2970a6;
+         text-decoration: underline;
+         padding-left: 20px;
+         }
+         #gettingStarted ul li {
+         color: #525252;
+         font-family: arial, helvetica, clean, sans-serif;
+         font-size: 12px;
+         list-style-type: circle;
+         }
+         #gettingStarted h3 {
+         color: #444;
+         font-size: 14px;
+         font-weight: bold;
+         padding-left: 20px;
+         }
+         #gettingStarted h4 {
+         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         line-height: 1.5;
+         color: #fff;
+         background-color: #2970a6;
+         cursor: pointer;
+         width: 1200px;
+         padding: 8px 8px 8px 22px;
+         margin: 0px;
+         border: 1px solid transparent;
+         border-color: #ddd;
+         border-bottom: none;
+         }
+         .package-details {
+         display: none;
+         padding: 15px;
+         border: 1px solid #ddd;
+         border-top: 0px;
+         width: 1200px;
+         }
+         .spacer {
+         border-bottom: 1px solid #ccc;
+         display: block;
+         }
+         .border {
+         border: 1px solid #ddd;
+         border-radius: 5px;
+         }
+         #domain{
+         width: 500px;
+         height: 30px;
+         border-radius: 3px;
+         border: 1px solid #CCC;
+         box-shadow: 1px 1px 5px #CCC;
+         }
+         #button{
+         height: 30px;
+         width : 316px;
+         background-color: #CCC;
+         margin: 3px;
+         }	
+         #alert{
+         display:none;
+         color:#8F8FA6;
+         font-family: arial, helvetica, clean, sans-serif;
+         font-size: 12px;
+         }
+      </style>
+      <script>
+         $(document).ready(function() {
+         	$("#gettingStarted h4").click(function() {
+         		if ($(this).next("div").is(":visible")) {
+         			$(this).next("div").slideUp('200');
+         		} else {
+         			$(this).next("div").slideToggle();
+         		}
+         	});
+         	$("#button").click(function(){
+         		var domain=$("#domain").val();
+         			$("body li:contains('.html')").each(function(){
+         					if($("#domain").val() == "" )
+         					{
+         						
+         						$("#alert").css({'display':"block"});
+         						$("#domain").focus();
+         					}								
+         					
+         					else{
+         					$(this).prepend(domain);
+         					$(this).wrapInner('<a href="' + $(this).text() + '" />');
+         					$("#button").attr('disabled','disabled');
+         					$("#domain").attr('disabled','disabled');
+         					$("#alert").css({'display':"none"});
+         					}
+         				});
+         	});
+         
+         });
+         
+      </script>
+   </head>
+   <body>
+      <div id="gettingStarted">
+      <nav>
+         <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------Contract------------------------------------------->
+         <h4>Contract</h4>
+         <div class="package-details">
+            <div class="border">
+               <h2><u>About the Contract</u></h2>
+               <ul>
+                  <li>
+                     Confirm with your contracting company that they have your information correct.
+                  </li>
+                  <li>
+                     Or other contact you worked with in the hiring process.
+                  </li>
+               </ul>
+               <span class="spacer"></span>
+            </div>
+         </div>
+         <!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------ID Badge------------------------------------------->
+         <h4>ID Badge</h4>
+         <div class="package-details">
+            <div class="border">
+               <h2><u>About the ID Badge</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> Identification badges are essential for accessing Cisco buildings and facilities.</li>
+                  <li> <strong>Prerequisite:</strong> User ID established in the employee/contractor directory</li>
+                  <li>
+                     <strong>Instructions:</strong> 
+                     <ol>
+                        <li> Check with the front desk to see if your User ID has been established on the directory.</li>
+                        <li> Once established, you will need to go to Security Room located at 163C <a href="http://wwwin.cisco.com/wpr/floorplans/bldgid/SJC09/SJC09-AFP-1.pdf" target="_top">1st floor map</a>) in Building 9 (see <a href="http://wwwin.cisco.com/wpr/locations/amerus/ca/sanjose/campusmap.pdf" target="_top">campus map</a>) with a form of picture id (license, passport, etc.) to get your Cisco Contractor Identity Badge.</li>
+                        <li> If you lose or forget your badge, you will need request a temporary day-use badge from the Lobby Ambassador. Building 8 does not have an Ambassador, you will have to go to Building 9 to obtain a temporary badge.</li>
+                     </ol>
+                  </li>
+                  <li> <strong>More Info:</strong> <a href="http://wwwin.cisco.com/security/" target="_top">Safety and Security Client Services</a></li>
+               </ul>
+            </div>
+         </div>
+         <!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------Laptop------------------------------------------->
+         <h4>Laptop</h4>
+         <div class="package-details">
+            <div class="border">
+               <h2><u>Laptop</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> Your Manager will open a support case to request your laptop and accessories which <em>should</em> be available to you on your first day at Cisco, but often are not.</li>
+                  <li>
+                     <strong>Access:</strong> <a href="http://iwe.cisco.com/web/view-post/post/-/posts?postId=162600019" target="_top">Laptops - CEC</a>  
+                     <ol>
+                        <li> Follow the instructions on the page. Contact your manager if you are unable to put in your own request.</li>
+                     </ol>
+                  </li>
+               </ul>
+               <h2><u>While you are waiting for your laptop</u></h2>
+               <ul>
+                  <li> If you do not have a laptop when you start, use the ID Lab computers (once we have lab access again).</li>
+                  <li> Ask your manager to open a support case to get your computer set up</li>
+               </ul>
+               <h2><u>When you get your laptop</u></h2>
+               <ul>
+                  <li> Don't try to log in first, it makes IT grumpy</li>
+                  <li>
+                     Once you have your new laptop follow the instructions at <a href="http://iwe.cisco.com/web/view-post/post/-/posts?postId=583900162" target="_top">New Hire Computer Setup</a> 
+                     <ul>
+                        <li>    This two-day process takes you through several important steps. For steps that are starred* below, you can find more ID specific info about them further down this page. </li>
+                     </ul>
+                     <ol>
+                        <li>
+                           Day One 
+                           <ol>
+                              <li> Setting up passwords, </li>
+                              <li> Connected Backup - enables backups on your computer, </li>
+                              <li> Setting up a printer, [in building 8 there are 2 located behind the elevators on the second floor in the room marked 'Post Office', note the printers are multipurpose and are also copiers and fax machines]</li>
+                              <li> Outlook email and integrating Webex (used for sharing and dialins in meetings), </li>
+                              <li> Getting a phone number*</li>
+                              <li> and requesting your VPN access (needed so you can work remotely, it takes time to process the request)</li>
+                           </ol>
+                        </li>
+                        <li>
+                           Day 2 
+                           <ol>
+                              <li> Setting up the Webex tools so they integrate with Outlook so you can invite people to meetings </li>
+                              <li> including Webex Connect (the instant messaging service we use)</li>
+                              <li> <a href="http://eman-core.cisco.com" target="_top">OnRamp</a> where you request accounts for the various servers you will need access to </li>
+                              <li> using <span class="twikiNewLink">SoftTracker<a href="/t4/bin/edit/Intdev/SoftTracker?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span>* to download software you need that isn't preinstalled , </li>
+                              <li> setting your <span class="twikiNewLink">SoftToken<a href="/t4/bin/edit/Intdev/SoftToken?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span> which will let you use <span class="twikiNewLink">AnyConnect<a href="/t4/bin/edit/Intdev/AnyConnect?topicparent=Intdev.NewHireChecklist" rel="nofollow" title="Create this topic">?</a></span> so that you can use your Cisco laptop to connect to the Cisco network from home or other locations</li>
+                           </ol>
+                        </li>
+                     </ol>
+                  </li>
+                  <li> <strong>More Info:</strong> For help, call Support 408-526-8888, or 800-888-8187, x6-8888</li>
+               </ul>
+            </div>
+         </div>
+         <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------Phone------------------------------------------->
+         <h4>Phone</h4>
+         <div class="package-details">
+            <div class="border">
+               <h2><u>About the Phone</u></h2>
+               <ul>
+                  <li> <strong>About:</strong> Request phone/number/voicemail for you</li>
+                  <li> <strong>Prerequisite:</strong> CEC account</li>
+               </ul>
+               <h2><u>In Building 8 in SJ or other 'Remote' locations you can request a 'Soft phone' number</u></h2>
+               <ul>
+                  <li>
+                     <ul>
+                        <li>
+                           Soft Phone:  (This allows you to use your laptop as your Cisco phone.  Note that it sometimes causes lags if you are screensharing at the same time.) 
+                           <ul>
+                              <li>        <a href="http://www.cisco.com/c/en/us/support/docs/voice-unified-communications/ip-softphone/6163-sp-client-install-config.html" target="_top">Request/Setup a Soft Phone (CUCI | CUPC)</a></li>
+                           </ul>
+                        </li>
+                        <li>
+                           Extension Mobility:  (This lets you use set any Cisco office phone to temporarily be your phone number) 
+                           <ul>
+                              <li>        <a href="http://iwe.cisco.com/web/view-post/post/-/posts?postId=206900026" target="_top"> Request/Setup Extension Mobility</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+               <h2><u>If in a location where you have an assigned cube you can order a physical IP phone</u></h2>
+               <ul>
+                  <li> <a href="http://iwe.cisco.com/web/view-post/post/-/posts?postId=141600103" target="_top">http://iwe.cisco.com/web/view-post/post/-/posts?postId=141600103</a></li>
+                  <li> If you need more help with phones <a href="http://wwwin.cisco.com/it/services/" target="_top">IT Services &amp; Support </a> or 408-526-8888</li>
+               </ul>
+            </div>
+         </div>
+         <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------Cisco Directory------------------------------------------->
+         <h4>Cisco Directory</h4>
+         <div class="package-details">
+            <div class="border">
+               <h2><u>Cisco Directory</u></h2>
+               <ul>
+                  <li> <a href="http://wwwin-tools.cisco.com/dir/empquery.go?q=Directory" target="_top">http://wwwin-tools.cisco.com/dir/empquery.go?q=Directory</a></li>
+                  <li> <strong>Prerequisite</strong>  User ID established in the employee/contractor directory</li>
+                  <li> You can edit your profile  and you can browse around to see who else is in the larger group under our manager (Rick Lilly)</li>
+               </ul>
+            </div>
+         </div>
+         <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------Storage Drawers and Day Lockers building 8------------------------------------------->
+         <h4>Storage Drawers and Day Lockers building 8</h4>
+         <div class="package-details">
+            <div class="border">
+               <h2><u>Lockers</u></h2>
+               <ul>
+                  <li> Day Lockers are unassigned and meant for daily use only, not overnight or long term</li>
+                  <li> Storage Drawers are for files or docking stations or other items you will store in the office longer term. If you will be in the office regularly and making use of one, you can request a key from Paula Barnes <a href="mailto:paubarne@cisco.com">paubarne@cisco.com</a> (our Director's admin) if any are available. Also Todd West manages the locks in bldg 8.</li>
+               </ul>
+            </div>
+         </div>
+         <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------Mailbox* * Not relevant for building 8 in SJ *------------------------------------------->			
+         <h4>Mailbox* * Not relevant for building 8 in SJ *</h4>
+         <div class="package-details">
+            <div class="border">
+               <ul>
+                  <li>  <strong>Mailboxes are obsolete in building 8 *  *with no cube to deliver to either I don't know what will happen when you get a new computer</strong></li>
+                  <li> <strong>About:</strong> Mailboxes to receive postal mail are available if necessary. Packages are usually delivered directly to your cube.     * <strong>Prerequisite:</strong> Manager's approval, NT account</li>
+                  <li> <strong>Access:</strong> <a href="http://wwwin.cisco.com/wpr/empserv/mail/amerus/policies/mailboxes.shtml" target="_top">Mailboxes - CEC</a></li>
+               </ul>
+            </div>
+         </div>
+         <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------Name Plate* * Not relevant for building 8 in SJ *------------------------------------------->
+         <h4>Name Plate* * Not relevant for building 8 in SJ *</h4>
+         <div class="package-details">
+            <div class="border">
+               <ul>
+                  <li> <strong>About:</strong> You can request for a name plate for your office/workplace</li>
+                  <li> <strong>Prerequisite:</strong> Manager's approval, NT account</li>
+                  <li>
+                     <strong>Access:</strong> <a href="http://wwwin.cisco.com/wpr/" target="_top">Workplace Resources</a> 
+                     <ol>
+                        <li> Go to bottom of page click on Name Plates.</li>
+                        <li> Now select the region where you belong to.</li>
+                        <li> Now select “Create service request.</li>
+                        <li> Now fill in the information on the form.      </li>
+                     </ol>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+	  </div>
+   </body>
+</html>

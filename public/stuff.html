@@ -1,0 +1,155 @@
+<html>
+   <head>
+      <title>Research content packages </title>
+      <script src="http://www.cisco.com/web/fw/lib/jquery-1.4.2.js"></script>
+      <style>
+         body {
+         font-family: arial, helvetica, sans-serif;
+         }
+         #stuff {
+         margin: 20px 0px 0px 15px;
+         }
+         #stuff h2 {
+         font-size: 14px;
+         font-weight: bold;
+         color: #2970a6;
+         text-decoration: underline;
+         padding-left: 20px;
+         }
+         #stuff ul li {
+         color: #525252;
+         font-family: arial, helvetica, clean, sans-serif;
+         font-size: 12px;
+         list-style-type: circle;
+         }
+         #stuff h3 {
+         color: #444;
+         font-size: 14px;
+         font-weight: bold;
+         padding-left: 20px;
+         }
+         #stuff h4 {
+         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         line-height: 1.5;
+         color: #fff;
+         background-color: #2970a6;
+         cursor: pointer;
+         width: 1200px;
+         padding: 8px 8px 8px 22px;
+         margin: 0px;
+         border: 1px solid transparent;
+         border-color: #ddd;
+         border-bottom: none;
+         }
+         .package-details {
+         display: none;
+         padding: 15px;
+         border: 1px solid #ddd;
+         border-top: 0px;
+         width: 1200px;
+         }
+         .spacer {
+         border-bottom: 1px solid #ccc;
+         display: block;
+         }
+         .border {
+         border: 1px solid #ddd;
+         border-radius: 5px;
+         }
+         #domain{
+         width: 500px;
+         height: 30px;
+         border-radius: 3px;
+         border: 1px solid #CCC;
+         box-shadow: 1px 1px 5px #CCC;
+         }
+         #button{
+         height: 30px;
+         width : 316px;
+         background-color: #CCC;
+         margin: 3px;
+         }	
+         #alert{
+         display:none;
+         color:#8F8FA6;
+         font-family: arial, helvetica, clean, sans-serif;
+         font-size: 12px;
+         }
+      </style>
+      <script>
+         $(document).ready(function() {
+         	$("#stuff h4").click(function() {
+         		if ($(this).next("div").is(":visible")) {
+         			$(this).next("div").slideUp('200');
+         		} else {
+         			$(this).next("div").slideToggle();
+         		}
+         	});
+         	$("#button").click(function(){
+         		var domain=$("#domain").val();
+         			$("body li:contains('.html')").each(function(){
+         					if($("#domain").val() == "" )
+         					{
+         						
+         						$("#alert").css({'display':"block"});
+         						$("#domain").focus();
+         					}								
+         					
+         					else{
+         					$(this).prepend(domain);
+         					$(this).wrapInner('<a href="' + $(this).text() + '" />');
+         					$("#button").attr('disabled','disabled');
+         					$("#domain").attr('disabled','disabled');
+         					$("#alert").css({'display':"none"});
+         					}
+         				});
+         	});
+         
+         });
+         
+      </script>
+   </head>
+   <body>
+      <div id="stuff">
+      <nav>
+         <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------stuff content------------------------------------------->
+         <h4>What is this stuff?</h4>
+         <div class="package-details">
+            <div class="border">
+               <h2><u>Document a different location outside of the default workspace. This is useful for sharing Eclipse projects as a team.</u></h2>
+               <ol>
+                  <li>
+                     <ol>
+                        <li> In a Universe-exploding move, you can then re-check in complete  your UNIX password (wo a common location for others to download with project settings intact.</li>
+                        <li> To import an existing Eclipse project, choose <code>"File&gt;Import&gt;General&gt;Existing Projects Into Workspace"</code></li>
+                        <li>  You can then choose to access it from it's current disk location (I'd recommend this when sharing projects), or import it into your workspace directory.</li>
+                     </ol>
+                  </li>
+               </ol>
+               <span class="spacer"></span>
+            </div>
+         </div>
+         
+          <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+         <!-------------------------------------Add pages------------------------------------------->
+         <h4>Add pages in instances like Yam/Artichoke</h4>
+         <div class="package-details">
+            <div class="border">
+               <h2><u>Add Pages to Instances Like Yam/Artichoke</u></h2>
+               <ol>
+                  <li>
+                     <ol>
+                        <li>Go to <a href = "http://gitlab.cisco.com/overkill/wemhomepage_files" >GitLab files</a></li>
+                        <li>In eclipse, use <strong> ssh://USERNAME@gitlab.cisco.com:overkill/wemhomepage_files.git</strong> to connect to git repository.</li>
+                        <li>Checkout the code and look for path and add your <em> .html </em> pages</li>
+                     </ol>
+                  </li>
+               </ol>
+               <span class="spacer"></span>
+            </div>
+         </div>
+      </nav>
+	  </div>
+   </body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <!--<base href="/">-->
+  <base href=".">
+  <title>Sandbox Quick Start Guide</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- fixed navbar -->
+
+  <div class="container">
+
+    <!-- Main component for a primary marketing message or call to action -->
+
+
+    <div class="row marketing">
+      <div class="col-lg-6">
+        <div>
+          <h2>Welcome to your WEM CQ sandbox environment.</h2>
+          You should be able to deploy your development branch here and take advantage of a number of automations, including test automation. 
+          <br><br>
+          For any problems or support please contact the overkill team of Cisco.com at <a href="mailto:overkill@cisco.com?subject=WEM CQ Sandbox">overkill@cisco.com</a>.
+          <br><br>
+          Please use the links at the top to navigate through the sandbox.
+          <br><br>
+          <!-- <a class="btn btn-lg btn-primary" href="documentation.html" role="button">View Documentation &raquo;</a> -->
+        </p>
+      </div>
+      <div>
+        <h2>Quick Start.</h2>
+		<h4>Make sure this machine is reserved for you</h4>
+		First, be sure this machine is reserved for you or your team.
+		At the right under <b>Your Agent Information</b> you should see the project you are working on
+		under "assignment" and you or someone on your team should be in the 
+		"Notifications" section. If not, please contact overkill@cisco.com before doing
+		anything else on this machine. If you are not listed as the user of this machine
+		you may loose your work when it is used by someone else!
+        <h4>go to jenkins</h4>
+        On your instance it should be: <a href=":8080">:8080/</a>
+        <h4><a href=":8080/job/GIT_WEM_HOOKS/build" target="_blank">run GIT_WEM_HOOKS the first time</a></h4>
+        This job gets the list of open branches for the other jobs. This job is configured to run every 30 minutes, so you will only need to run it manually when there is a recent change to the list of open branches or when a box is brand new.
+        <h4><a href=":4502" target="_blank">Confirm CQ is running here</a></h4>
+		<p>If not, <a href=":8080/view/CQ%20Administration/job/CQ_RESTART/build" target="_blank">click here to run the Jenkins job RESTART_CQ</a></p>
+        <h4><a href=":8080/job/GIT_WEM/build" target="_blank">run GIT_WEM</a></h4>
+        This will check out the branch you specify and do a mvn build.  This will take a long time the first time you run it. But when it is done it will trigger deloy core. ( Deploy may fail the first time; re-run it manually if it does. )
+        <h4><a href=":8080/view/Deploy/job/DEPLOY_LOCALHOST/build" target="_blank">run DEPLOY_LOCALHOST with develop and security only</a></h4>
+        Running GIT_WEM as per the previous step will try to trigger a downstream build of DEPLOY_LOCALHOST which may not work the first time.  Wait for that to finish then manually run DEPLOY_LOCALHOST. For target select deploySecurity.
+        <h4><a href=":8080/view/CQ%20Administration/job/CQ_RESTART/" target="_blank">run RESTART_CQ</a></h4>
+        <h4><a href=":8080/view/Deploy/job/DEPLOY_LOCALHOST/build" target="_blank">run DEPLOY_LOCALHOST with any other desired maven targets</a></h4>
+        Optionially deploy other build targets as needed.
+        <h4>check your instance</h4>
+        <ul>
+          <li>In crxde, /apps/cdc should be there</li>
+          <li>You should have the content packages (STOCK_CONTENT is downstream from DEPLOY_LOCALHOST so stock content gets installed over and over again)</li>
+          <li>BASIC_CONTENT_CHECK should succeed</li>
+          <li>BATCH_RUNNER should work (you may find that some tests still fail but the job should work and most tests should pass)</li>
+        </ul>
+        <h4>adjust polling</h4>
+        In configure for GIT_WEM there's a "poll scm" option under triggers that takes cron style interval arguments.
+		This will allow you to automatically deploy new changes to your sandbox as they are checked into your selected branch.
+
+
+
+        <h2>LDAP</h2>
+        <p>If your machine is configured with LDAP you should be able to login to CQ with your Cisco Domain account. (all AEM6 profiles come with LDAP and newer 5.5, check the "Your Agent Information"
+		section on this page).</p>
+		
+		<h4>Follow the instructions above</h4>
+		<p>Be sure security and core have been deployed on this box, and CQ has been restarted afterward. LDAP (especially in CQ5.5) will not 
+		work without the packages in those deploys.</p>
+
+		<h4>Login to CQ</h4>
+		<p>Using your cisco.com credentials login to CQ. Unfortunately, this is using a dev LDAP server where
+		all accounts are not fully in sync with production. So not all users wil be able to login, and
+		those who can login may not have the correct entitlements.</p>
+		
+		<h4>Grant Permissions</h4>
+		<p>Have someone login to your system as admin or another privileged user and grant your newly created user the desired permissions. 
+		By default your new user will only have minimal permissions. You will need to be granted permissions in CQ to be able to do most things.</p>
+
+
+        
+        <h2>Shell Access</h2>
+		<p>
+		This sandbox is designed and provided as a stable functioning CQ environment.
+		All day to day tasks can be managed via <a href=":8080">Jenkins</a>.
+		Shell access is not typically provided or required. If you are developing new
+		sandbox features or need to work directly with the CQ installation
+		please familliarize yourself with
+		the setup before requesting access. Access can be provided if required, but 
+		support for changes made on the command line will not be provided. These 
+		sandboxes have been created in a way to be as similar as possible to allow
+		for consistent development environemnts.
+		</p>
+		<p>
+		If you determine that you do need a shell accout, please email bot-admin with
+		a quick summary of the changes you want to make, and a public key. Login is provided
+		via ssh public keys. The way you create a key will depend upon the application you use
+		for ssh, but Googling "&lt;appname&gt; ssh public key login" should get you the information 
+		you need. (please note, even if this is an LDAP sandbox, LDAP integraion is for
+		login to CQ not the shell)
+		</p>
+    </div>
+  </div>
+
+  <div class="col-lg-5">
+    <h4>SLA</h4>
+    <p>This sandbox environment is under beta support.  Please use and share this as widely as you like, keeping in mind that stability is not guaranteed, and that there may be times where sandboxes come and go. Please save your work often, and work from revision control to the sandbox whenever possible.</p>
+    <p>Please see http://gitlab.cisco.com/overkill/wemhomepage_files for the repo that holds this documentation</p>
+  </div>
+
+  <div class="col-lg-5">
+    <h4 id="hostNameHeading">Your Resources On </h4>
+    <p><a class="btn btn-lg btn-primary" href="/" onclick="javascript:event.target.port=8080" role="button">Jenkins Home &raquo;</a>
+      <a class="btn btn-lg btn-primary" href="/" onclick="javascript:event.target.port=4502" role="button">CQ Login &raquo;</a></p>
+    </div>
+
+    <div class="col-lg-5">
+      <h4>Your Agent Information</h4>
+      <div id="agent"></div>
+    </div>
+
+    <div class="col-lg-5">
+      <h4>Your Agent <a href="/api/status" target="_blank">Status</a></h4>
+      <div id="status"></div>
+    </div>
+
+  </div>
+  <div class="footer">
+    <p>&copy; All Rights Reserved, Cisco Systems 2014</p>
+  </div>
+</div> <!-- /container -->
+
+	
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sandbox-home.js"></script>
+  </body>
+  </html>
